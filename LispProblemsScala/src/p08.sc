@@ -14,5 +14,6 @@ def compress(list: List[Any]): List[Any] = list match {
     acc ::: (if (acc.nonEmpty && acc.last == item) Nil else List(item)))
 }
 
+assert(compress(Nil).isEmpty)
 assert(compress(List(1, 2, 2, 3)) == List(1, 2, 3))
 assert(compress(List(1, 1, 1, 1, 2, 3, 3, 1, 1, 4, 5, 5, 5, 5)) == List(1, 2, 3, 1, 4, 5))
