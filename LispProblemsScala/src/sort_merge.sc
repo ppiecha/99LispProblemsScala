@@ -18,3 +18,5 @@ assert(sort[Int](List(1, 3, 2), (x, y) => x < y) == List(1, 2, 3))
 val sortInt = sort[Int](_, (x, y) => x < y)
 assert(sortInt(List(9, 8, 7, 6, 2, 3, 4, 4, 2, 7, 5, 4, 1, 1, 2)) ==
   List(1, 1, 2, 2, 2, 3, 4, 4, 4, 5, 6, 7, 7, 8, 9))
+assert(sortInt(List(1)) == List(1))
+assert(sortInt(Nil).isEmpty)
