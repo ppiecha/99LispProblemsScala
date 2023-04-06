@@ -32,4 +32,28 @@ Example:
 def encode(list: List[Any]): List[(Int, Any)] =
   pack(list).map(x => (x.length, x.head))
 
+encode(List(1, 1, 1, 1, 2, 3, 3, 1, 1, 4, 5, 5, 5, 5))
 assert(encode(List(1, 1, 1, 1, 2, 3, 3, 1, 1, 4, 5, 5, 5, 5)) == List((4,1), (1,2), (2,3), (2,1), (1,4), (4,5)))
+
+/*
+* P11 (*) Modified run-length encoding.
+Modify the result of problem P10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (N E) lists.
+
+Example:
+* (encode-modified '(a a a a b c c a a d e e e e))
+((4 A) B (2 C) (2 A) D (4 E))
+* */
+
+sealed trait Element
+
+case class Single(element: Any) extends Element
+case class Multiple(elements: List[Any]) extends Element
+
+def encodeModified(list: List[Any]): List[Element] = {
+  pack(list).map {
+    case List(x) => Single(element = x)
+    case xs => Multiple(elements = xs)
+  }
+}
+
+encodeModified(List(1, 1, 1, 1, 2, 3, 3, 1, 1, 4, 5, 5, 5, 5))

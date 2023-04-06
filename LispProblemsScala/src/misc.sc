@@ -19,3 +19,11 @@ def check: Type => String = {
 check(IntType(2))
 check(StringType("s"))
 check(FloatType(3.14))
+
+
+
+List(1,2,3).reduce(_ max _)
+List(1,2,3).max
+
+val a:Int = 1
+a + 2

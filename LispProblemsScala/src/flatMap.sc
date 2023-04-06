@@ -14,3 +14,8 @@ println(List("1 2 3", "4 5").flatMap(_.split(" ").toList))
 println(List("1 2 3", "4 5").flatMap(line => {val fields = line.split(" "); Some(fields(0), fields(1))}))
 
 println(List(1,2,3).flatMap(x => List(x, x)))
+
+println(
+  """
+    |aaa
+    |""".stripMargin)
