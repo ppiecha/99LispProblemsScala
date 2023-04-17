@@ -1,13 +1,13 @@
 package Generic {
 
-  abstract class GenericList[T] {
+  abstract class GenericList[+T] {
     def head: T
 
     def tail: GenericList[T]
 
     def isEmpty: Boolean
 
-    def add(element: T): GenericList[T]
+    def add[U >: T](element: U): GenericList[U]
 
     def toString: String
   }
@@ -19,7 +19,7 @@ package Generic {
 
     def isEmpty = true
 
-    def add(element: T): GenericList[T] = new Cons(element, new Empty[T])
+    def add[U >: T](element: U): GenericList[U] = new Cons(element, new Empty[T])
 
     override def toString = "Nil"
   }
@@ -31,7 +31,7 @@ package Generic {
 
     def isEmpty = false
 
-    def add(element: T) = new Cons(element, this)
+    def add[U >: T](element: U): GenericList[U] = new Cons(element, this)
 
     override def toString: String = "Cons(" + head.toString + ", " + tail.toString + ")"
   }
