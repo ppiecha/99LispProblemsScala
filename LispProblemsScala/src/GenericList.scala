@@ -12,19 +12,19 @@ package Generic {
     def toString: String
   }
 
-  class Empty[T] extends GenericList[T] {
+  object Empty extends GenericList[Nothing] {
     def head = throw new NoSuchElementException()
 
     def tail = throw new NoSuchElementException()
 
     def isEmpty = true
 
-    def add[U >: T](element: U): GenericList[U] = new Cons(element, new Empty[T])
+    def add[U >: Nothing](element: U): GenericList[U] = new Cons(element, Empty)
 
     override def toString = "Nil"
   }
 
-  class Cons[T](h: T, t: GenericList[T]) extends GenericList[T] {
+  class Cons[+T](h: T, t: GenericList[T]) extends GenericList[T] {
     def head = h
 
     def tail = t
@@ -37,7 +37,7 @@ package Generic {
   }
 
   object GenericList extends App {
-    val empty = new Empty[String]
+    val empty = Empty
     println(empty)
     val l1 = new Cons("part1", empty)
     println(l1)
