@@ -19,3 +19,10 @@ println(
   """
     |aaa
     |""".stripMargin)
+
+List(1,2,3).map(_ + " is a number")
+
+val s = 1 + " is a number"
+val numbers = List(1,2,3,4)
+val chars = List('a','b','c','d')
+numbers.flatMap(x => chars.map(x.toString + _))
