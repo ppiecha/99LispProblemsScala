@@ -1,7 +1,7 @@
 package fp
 
 import scala.annotation.tailrec
-import scala.util.Random
+import scala.util.{Random, Try}
 
 object Maps extends App{
 
@@ -131,4 +131,29 @@ object Maps extends App{
 
   println(List(1, 2) collect { case i: Int => i > 10 })
   println(List(1, 2) filter { i: Int => i > 10 })
+
+  val hostname = "localhost"
+  val port = "8080"
+  def renderHTML(page: String) = println(page)
+
+  class Connection2 {
+    def get(url: String): String = {
+      val random = new Random(System.nanoTime())
+      if (random.nextBoolean()) "<html>...</html>"
+      else throw new RuntimeException("Connection interrupted")
+    }
+  }
+
+  object HttpService {
+    val random = new Random(System.nanoTime())
+
+    def getConnection(host: String, port: String): Connection2 =
+      if (random.nextBoolean()) new Connection2
+      else throw new RuntimeException("wrong port")
+  }
+
+  for {
+    connection <- Try(HttpService.getConnection(hostname, port))
+    page <- Try(connection.get("myUrl"))
+  } yield renderHTML(page)
 }
