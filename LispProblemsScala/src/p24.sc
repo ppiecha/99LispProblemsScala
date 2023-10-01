@@ -1,12 +1,11 @@
 import scala.annotation.tailrec
 
 /*
-* P23 (**) Extract a given number of randomly selected elements from a list.
-The selected items shall be returned in a list.
+* P24 (*) Lotto: Draw N different random numbers from the set 1..M.
+The selected numbers shall be returned in a list.
 Example:
-* (rnd-select '(a b c d e f g h) 3)
-(E D A)
-* Hint: Use the built-in random number generator and the result of problem P20.
+* (lotto-select 6 49)
+(23 1 17 33 21 37)
 * */
 
 def rndSelect[A](list: List[A], count: Int): List[A] = {
@@ -21,4 +20,6 @@ def rndSelect[A](list: List[A], count: Int): List[A] = {
   loop(list.toSeq, count, Seq()).toList
 }
 
-rndSelect(List(1, 2, 3, 4, 5, 6, 7), 3)
+def lottoSelect(n : Int, m: Int): List[Int] = rndSelect((1 to m).toList, n)
+
+lottoSelect(6, 49)

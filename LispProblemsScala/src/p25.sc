@@ -1,12 +1,10 @@
 import scala.annotation.tailrec
 
 /*
-* P23 (**) Extract a given number of randomly selected elements from a list.
-The selected items shall be returned in a list.
+* P25 (*) Generate a random permutation of the elements of a list.
 Example:
-* (rnd-select '(a b c d e f g h) 3)
-(E D A)
-* Hint: Use the built-in random number generator and the result of problem P20.
+* (rnd-permu '(a b c d e f))
+(B A D C E F)
 * */
 
 def rndSelect[A](list: List[A], count: Int): List[A] = {
@@ -21,4 +19,6 @@ def rndSelect[A](list: List[A], count: Int): List[A] = {
   loop(list.toSeq, count, Seq()).toList
 }
 
-rndSelect(List(1, 2, 3, 4, 5, 6, 7), 3)
+def rndPermu[A](list: List[A]): List[A] = rndSelect(list, list.length)
+
+rndPermu(List('a', 'b', 'c', 'd', 'e', 'f'))
